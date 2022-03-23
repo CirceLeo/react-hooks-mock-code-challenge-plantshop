@@ -17,7 +17,6 @@ function PlantPage() {
       body: JSON.stringify(plantObj)
     })
     .then( res => res.json())
-    .then( data => console.log(data))
     .catch( error => console.log(error.message));
     setPlantsArray([...plantsArray, plantObj])
   }
@@ -29,16 +28,27 @@ function PlantPage() {
   }, [])
 
   function removePlantByID(plantID){
-    console.log(plantID)
     fetch(`http://localhost:6001/plants/${plantID}`, {
         method: "DELETE",
     })
-    // .then( res => res.json())
-    // .then( data => console.log(data))
-    // .catch( error => console.log(error.message));
     const filteredPlants = plantsArray.filter(plant => plant.id !== plantID)
     setPlantsArray(filteredPlants)
   }
+
+  function updatePlantPrice(plantID, newPrice){
+    fetch(`http://localhost:6001/plants/${plantID}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+        },
+        //body: {"price": newPrice}
+        body: JSON.stringify({
+            price: newPrice
+        })
+    })
+    .then()
+    }
 
   const searchedPlants = plantsArray.filter(plant => {
     return plant.name.toLowerCase().includes(search.toLocaleLowerCase())
@@ -48,7 +58,7 @@ function PlantPage() {
     <main>
       <NewPlantForm addNewPlant={addNewPlant} />
       <Search setSearch={setSearch}/>
-      <PlantList onDelete={removePlantByID} search={search} plantsArray={searchedPlants} />
+      <PlantList updatePlantPrice={updatePlantPrice} onDelete={removePlantByID} search={search} plantsArray={searchedPlants} />
     </main>
   );
 }

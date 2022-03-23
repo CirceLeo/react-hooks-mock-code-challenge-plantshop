@@ -1,17 +1,25 @@
 import React, { useState } from "react";
 
-function PlantCard({plant, onDelete}) {
+function PlantCard({plant, onDelete, onUpdate}) {
 
   const {image, name, price, id} = plant
   const [inStock, setInStock] = useState(true)
+  const [newPrice, setNewPrice] = useState(0)
   function handleInStock(){
     setInStock(!inStock)
   }
 
   function handleDelete(){
     onDelete(id)
-    // event.target.parentNode.remove()
+  }
 
+  function handlePriceUpdate(){
+    onUpdate(id, newPrice)
+    setNewPrice(0)
+  }
+
+  function handlePriceChange(event){
+    setNewPrice(event.target.value)
   }
 
   return (
@@ -25,6 +33,9 @@ function PlantCard({plant, onDelete}) {
         <button onClick={handleInStock}>Out of Stock</button>
       )}
       <button onClick={handleDelete} className="removal"> Remove From Stock</button>
+
+      <input onChange={handlePriceChange} value={newPrice} type="number" name="price" step="any" placeholder="New Price" />
+      <button onClick={handlePriceUpdate}> Update Price</button>
     </li>
   );
 }
