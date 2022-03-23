@@ -41,6 +41,12 @@
       "name": "Fiddle Leaf Fig",
       "image": "./images/fiddle-leaf-fig.jpg",
       "price": 55
+    },
+    {
+      "name": "Bob",
+      "image": "https://media.urbanstems.com/image/upload/f_auto/w_900,c_fit,q_80/Catalogs/urbanstems-master/the-phoebe/Phoebe_Carousel.jpg",
+      "price": "42",
+      "id": 8
     }
   ]
 }
