@@ -14,7 +14,7 @@ function PlantCard({plant, onDelete, onUpdate}) {
   }
 
   function handlePriceUpdate(){
-    onUpdate(id, newPrice)
+    onUpdate(plant, newPrice)
     setNewPrice(0)
   }
 

@@ -35,8 +35,8 @@ function PlantPage() {
     setPlantsArray(filteredPlants)
   }
 
-  function updatePlantPrice(plantID, newPrice){
-    fetch(`http://localhost:6001/plants/${plantID}`, {
+  function updatePlantPrice(plant, newPrice){
+    fetch(`http://localhost:6001/plants/${plant.id}`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json",
@@ -47,7 +47,15 @@ function PlantPage() {
             price: newPrice
         })
     })
-    .then()
+    .then(() => {
+      const updatedPlant = {
+        ...plant,
+        price: newPrice
+      }
+      const removeOld = plantsArray.filter(oldPlant => {return oldPlant.id !== plant.id})
+     // setPlantsArray(...removeOld, updatedPlant)
+
+    })
     }
 
   const searchedPlants = plantsArray.filter(plant => {

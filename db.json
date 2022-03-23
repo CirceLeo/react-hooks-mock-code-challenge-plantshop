@@ -4,13 +4,13 @@
       "id": 1,
       "name": "Aloe",
       "image": "./images/aloe.jpg",
-      "price": "34"
+      "price": 0
     },
     {
       "id": 2,
       "name": "ZZ Plant",
       "image": "./images/zz-plant.jpg",
-      "price": "10"
+      "price": "234"
     },
     {
       "id": 3,
